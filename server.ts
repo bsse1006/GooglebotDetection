@@ -38,6 +38,10 @@ export function app(): express.Express {
     {
       console.log("I am a user");
     }
+    else
+    {
+      console.log("I am a bot");
+    }
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
