@@ -33,14 +33,16 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    var CrawlerDetector = new Crawler(req);
-    if ( !CrawlerDetector.isCrawler() )
+    var crawlerDetector = new Crawler(req);
+
+    if ( !crawlerDetector.isCrawler() )
     {
       console.log("I am a user");
     }
     else
     {
       console.log("I am a bot");
+      console.log(req);
     }
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
