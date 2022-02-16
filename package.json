@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run BotDetection:serve-ssr",
     "serve:ssr": "node dist/BotDetection/server/main.js",
     "build:ssr": "ng build && ng run BotDetection:server",
-    "prerender": "ng run BotDetection:prerender"
+    "prerender": "ng run BotDetection:prerender",
+    "heroku-postbuild": "npm run build:ssr",
+    "start": "node dist/angularHeroku/server/main.js"
   },
   "private": true,
   "dependencies": {
