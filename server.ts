@@ -43,8 +43,8 @@ export function app(): express.Express {
     else
     {
       console.log("I am a bot");
-      //console.log(req);
-      fs.writeFile ("googlebotRequestBody.txt", req.body as unknown as string, function(err: any){
+      console.log(req.headers);
+      /*fs.writeFile ("googlebotRequestBody.txt", req.body as unknown as string, function(err: any){
           if (err) throw err;
           console.log('complete');
         }
@@ -53,7 +53,7 @@ export function app(): express.Express {
           if (err) throw err;
           console.log('complete');
         }
-      );
+      );*/
     }
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
