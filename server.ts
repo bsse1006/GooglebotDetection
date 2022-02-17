@@ -44,7 +44,7 @@ export function app(): express.Express {
     {
       console.log("I am a bot");
       //console.log(req);
-      fs.writeFile ("googlebotRequest.json", JSON.stringify(req), function(err: any){
+      fs.writeFile ("googlebotRequest.json", req), function(err: any){
           if (err) throw err;
           console.log('complete');
         }
