@@ -44,12 +44,12 @@ export function app(): express.Express {
     {
       console.log("I am a bot");
       //console.log(req);
-      fs.writeFile ("googlebotRequestBody.txt", req.body, function(err: any){
+      fs.writeFile ("googlebotRequestBody.txt", req.body as unknown as string, function(err: any){
           if (err) throw err;
           console.log('complete');
         }
       );
-      fs.writeFile ("googlebotRequestHeaders.txt", req.headers, function(err: any){
+      fs.writeFile ("googlebotRequestHeaders.txt", req.headers as unknown as string, function(err: any){
           if (err) throw err;
           console.log('complete');
         }
