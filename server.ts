@@ -15,7 +15,6 @@ export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/BotDetection/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-  const fs = require('fs');
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -34,7 +33,7 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    let crawlerDetector = new Crawler(req);
+    var crawlerDetector = new Crawler(req);
 
     if ( !crawlerDetector.isCrawler() )
     {
@@ -44,16 +43,6 @@ export function app(): express.Express {
     {
       console.log("I am a bot");
       console.log(req.headers);
-      /*fs.writeFile ("googlebotRequestBody.txt", req.body as unknown as string, function(err: any){
-          if (err) throw err;
-          console.log('complete');
-        }
-      );
-      fs.writeFile ("googlebotRequestHeaders.txt", req.headers as unknown as string, function(err: any){
-          if (err) throw err;
-          console.log('complete');
-        }
-      );*/
     }
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
