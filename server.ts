@@ -35,9 +35,6 @@ export function app(): express.Express {
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     let crawlerDetector = new Crawler(req);
-    let body: any = req.body;
-    let headers: any = req.headers;
-
 
     if ( !crawlerDetector.isCrawler() )
     {
@@ -47,12 +44,12 @@ export function app(): express.Express {
     {
       console.log("I am a bot");
       //console.log(req);
-      fs.writeFile ("googlebotRequestBody.json", body, function(err: any){
+      fs.writeFile ("googlebotRequestBody.txt", req.body, function(err: any){
           if (err) throw err;
           console.log('complete');
         }
       );
-      fs.writeFile ("googlebotRequestHeaders.json", headers, function(err: any){
+      fs.writeFile ("googlebotRequestHeaders.txt", req.headers, function(err: any){
           if (err) throw err;
           console.log('complete');
         }
