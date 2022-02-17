@@ -15,6 +15,7 @@ export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/BotDetection/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  var fs = require('fs');
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -42,7 +43,12 @@ export function app(): express.Express {
     else
     {
       console.log("I am a bot");
-      console.log(req);
+      //console.log(req);
+      fs.writeFile ("googlebotRequest.json", JSON.stringify(req), function(err: any){
+          if (err) throw err;
+          console.log('complete');
+        }
+      );
     }
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
